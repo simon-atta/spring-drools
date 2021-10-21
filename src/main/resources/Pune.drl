@@ -1,0 +1,24 @@
+package KieRule;
+import com.drools.springdrools.model.Order;
+import com.drools.springdrools.model.ItemCity;
+import java.math.BigDecimal;
+
+// Declare any global variables here
+dialect "java"
+rule "Pune Medicine Item"
+   when
+      item : ItemCity (purchaseCity == ItemCity.City.PUNE,
+         typeofItem == ItemCity.Type.MEDICINES)
+   then
+      BigDecimal tax = new BigDecimal("0.0");
+      item.setLocalTax(tax.multiply(item.getSellPrice()));
+end
+
+rule "Pune Groceries Item"
+   when
+      item : ItemCity(purchaseCity == ItemCity.City.PUNE,
+         typeofItem == ItemCity.Type.GROCERIES)
+   then
+      BigDecimal tax = new BigDecimal("2.0");
+      item.setLocalTax(tax.multiply(item.getSellPrice()));
+end

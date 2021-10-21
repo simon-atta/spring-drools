@@ -16,7 +16,9 @@ public class DroolConfig {
 
     private KieFileSystem getKieFileSystem() {
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-        kieFileSystem.write(ResourceFactory.newClassPathResource("offer.drl"));
+        kieFileSystem.write(ResourceFactory.newClassPathResource("Offer.drl"));
+        kieFileSystem.write(ResourceFactory.newClassPathResource("Nagpur.drl"));
+        kieFileSystem.write(ResourceFactory.newClassPathResource("Pune.drl"));
         return kieFileSystem;
     }
 
