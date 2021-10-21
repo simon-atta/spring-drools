@@ -2,25 +2,29 @@ package KieRule;
 import com.drools.springdrools.model.Order;
 
 rule "HDFC"
-
 when
 orderObject : Order(cardType == "HDFC" && price>10000);
 then
 orderObject.setDiscount(10);
+orderObject.setPrice(calculatePercentage(10.0, orderObject.getPrice()));
 end;
 
 rule "ICICI"
-
 when
 orderObject : Order(cardType == "ICICI" && price > 15000);
 then
 orderObject.setDiscount(8);
+orderObject.setPrice(calculatePercentage(8.0, orderObject.getPrice()));
 end;
 
 rule "DBS"
-
 when
 orderObject : Order(cardType == "DBS" && price > 15000);
 then
 orderObject.setDiscount(15);
+orderObject.setPrice(calculatePercentage(15.0, orderObject.getPrice()));
 end;
+
+function double calculatePercentage (double discountValue, double price) {
+   return price - (price * ( discountValue / 100 ));
+}

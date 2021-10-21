@@ -10,5 +10,5 @@ public class Order {
 	private String name;
 	private String cardType;
 	private int discount;
-	private int price;
+	private double price;
 }
